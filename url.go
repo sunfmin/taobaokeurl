@@ -18,7 +18,11 @@ func ResolveTaobaokeUrl(taobaokeurl string) (detailurl string, numiid string) {
 	client := &http.Client{
 		CheckRedirect: catchNumiid,
 	}
-	req, _ := http.NewRequest("GET", taobaokeurl, nil)
+	req, err := http.NewRequest("GET", taobaokeurl, nil)
+	if err != nil {
+		log.Println("taobaokeurl: ", err)
+		return
+	}
 	req.Header.Set("Content-Type", "text/html")
 	req.Header.Set("User-Agent", "Googlebot/2.1 (+http://www.googlebot.com/bot.html)")
 	req.Header.Set("Referer", "http://s.click.taobao.com/t_js?tu="+url.QueryEscape(taobaokeurl))
