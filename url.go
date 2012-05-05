@@ -27,7 +27,7 @@ func ResolveTaobaokeUrl(taobaokeurl string) (detailurl string, numiid string) {
 	req.Header.Set("User-Agent", "Googlebot/2.1 (+http://www.googlebot.com/bot.html)")
 	req.Header.Set("Referer", "http://s.click.taobao.com/t_js?tu="+url.QueryEscape(taobaokeurl))
 
-	_, err := client.Do(req)
+	_, err = client.Do(req)
 
 	if err != nil {
 		urlerr, ok := err.(*url.Error)
