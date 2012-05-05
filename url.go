@@ -10,6 +10,11 @@ import (
 )
 
 func ResolveTaobaokeUrl(taobaokeurl string) (detailurl string, numiid string) {
+	found := regexpTaobaoItem.FindStringSubmatch(taobaokeurl)
+	if len(found) > 0 {
+		return taobaokeurl, found[1]
+	}
+
 	client := &http.Client{
 		CheckRedirect: catchNumiid,
 	}
